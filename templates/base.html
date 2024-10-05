@@ -11,25 +11,11 @@
         <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
     </head>
-<body>
-{% include "navbar.html"%}
-<h1>product</h1>
-{% if content_list %}
-{% for content in content_list %}
-<hr/>
-<h3><a href="/product/{{ content.id }}/">{{ content.title }}</a></h3>
-<p>{{ content.content | truncatewords:30 }}</p>
-<h5>{{ content.content}}</h5>
-<div class="col-lg-5">
-    <h1 class="font-weight-light">{{ content.title }}</h1>
-    <a class="btn btn-primary" href="{% url 'detail' content.id %}">상품 상세보기</a>
-</div>
-{% endfor %}
-{% else %}
-<p>content 가 없습니다.</p>
-{% endif %}
+<body class="d-flex flex-column min-vh-100">
+    {% include "navbar.html"%}
+    {% block content %}
+    {% endblock %}
+    {% include "footer.html" %}
 
-{% include "footer.html" %}
-</body>
 </body>
 </html>
